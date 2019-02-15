@@ -35,6 +35,14 @@ function results = mwEncoders(td,params)
     for modelnum = 1:num_models-1
         switch model_aliases{modelnum}
         case 'musc'
+            % first normalize muscle?
+            mean_len = mean(getSig(td,'muscle_len'));
+            mean_vel = mean(getSig(td,'muscle_vel'));
+            for trialnum = 1:length(td)
+                td(trialnum).muscle_len = td(trialnum).muscle_len/mean_len;
+                td(trialnum).muscle_vel = td(trialnum).muscle_vel/mean_vel;
+            end
+
             % Do PCA on muscle space
             % do PCA on muscles, training on only the training set
             % need to drop a muscle: for some reason, PCA says rank of muscle kinematics matrix is 38, not 39.
