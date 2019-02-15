@@ -39,8 +39,8 @@ function results = mwEncoders(td,params)
             mean_len = mean(getSig(td,'muscle_len'));
             mean_vel = mean(getSig(td,'muscle_vel'));
             for trialnum = 1:length(td)
-                td(trialnum).muscle_len = td(trialnum).muscle_len/mean_len;
-                td(trialnum).muscle_vel = td(trialnum).muscle_vel/mean_vel;
+                td(trialnum).muscle_len = td(trialnum).muscle_len./mean_len;
+                td(trialnum).muscle_vel = td(trialnum).muscle_vel./mean_vel;
             end
 
             % Do PCA on muscle space
